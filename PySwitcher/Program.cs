@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace PySwitcher
 {
@@ -55,9 +56,13 @@ namespace PySwitcher
 
         static void Main(string[] args)
         {
-            p = new VersionParser(Environment.CurrentDirectory + "\\versions.dat");
-            h = new HasRunParser(Environment.CurrentDirectory + "\\hasrun.dat");
-            c = new CurrentParser(Environment.CurrentDirectory + "\\current.dat");
+            RegistryKey AppKey = Registry.CurrentUser.OpenSubKey("Software\\PySwitcher");
+            string homeDirectory = AppKey.GetValue("Location").ToString();
+            Console.WriteLine("HOMEDIR: {0}", homeDirectory);
+
+            p = new VersionParser(homeDirectory + "\\versions.dat");
+            h = new HasRunParser(homeDirectory + "\\hasrun.dat");
+            c = new CurrentParser(homeDirectory + "\\current.dat");
 
             Console.WriteLine("Available Python Versions are: ");
             foreach (string key in p.Versions.Keys)

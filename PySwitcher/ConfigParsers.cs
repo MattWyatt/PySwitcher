@@ -67,14 +67,12 @@ namespace PySwitcher
                 if (line.StartsWith("currentlabel"))
                 {
                     string label = line.Substring(13);
-                    Console.WriteLine("CurrentLabel: " + label);
                     CurrentLabel = label;
                 }
 
                 else if (line.StartsWith("currentpath"))
                 {
                     string path = line.Substring(12);
-                    Console.WriteLine("CurrentPath: " + path);
                     CurrentPath = path;
                 }
             }
