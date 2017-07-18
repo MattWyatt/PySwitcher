@@ -58,7 +58,6 @@ namespace PySwitcher
         {
             RegistryKey AppKey = Registry.CurrentUser.OpenSubKey("Software\\PySwitcher");
             string homeDirectory = AppKey.GetValue("Location").ToString();
-            Console.WriteLine("HOMEDIR: {0}", homeDirectory);
 
             p = new VersionParser(homeDirectory + "\\versions.dat");
             h = new HasRunParser(homeDirectory + "\\hasrun.dat");
